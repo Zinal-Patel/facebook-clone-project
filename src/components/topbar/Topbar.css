@@ -1,0 +1,108 @@
+.topbarConatiner{
+    width: 100%;
+    height: 50px;
+    background-color: #1877f2;
+
+    /* Flex properties */
+    display: flex;
+    align-items: center;
+
+    /* Keep the topbar sticked to top */
+    position: sticky;
+    top: 0;
+
+    z-index: 999;
+}
+
+/* Styling Left container of Topbar */
+.topbarLeft{
+    /* gives the container 3 columns */
+    flex: 3;
+}
+
+.topbarLogo{
+    font-size: 24px;
+    margin-left: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+/* Styling Center container of Topbar */
+.topbarCenter{
+    /* gives the container 5 columns */
+    flex: 5;
+}
+
+.searchBar{
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.searchInput{
+    border: none;
+}
+
+/* When we click on the searchBar, we do not want any border/outline. */
+.searchInput:focus{
+    outline: none;
+}
+/* Styling Right container of Topbar */
+.topbarRight{
+    color: white;
+    /* gives the container 4 columns */
+    flex: 4;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topbarLinkItem{
+    margin: auto 10px ;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.topbarIcons{
+    display: flex;
+}
+
+.topbarIconItem{
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.topbarIconBadge{
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topbarImage{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 20px;
+}

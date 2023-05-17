@@ -1,0 +1,64 @@
+.sidebarContainer{
+    flex: 3;
+    /* 50px is occupied by topbar, so we want sidebar to occupy all space except that 50px */
+    height: calc(100vh - 50px);
+    overflow-y: scroll;
+    position: sticky;
+    top:50px;
+}
+
+/* Styling Scrollbar */
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgb(179, 179, 179);
+}
+
+/* Styling Wrapper Container  */
+
+.sidebarWrapper{
+    padding: 20px;
+}
+
+/* Styling sidebarList */
+.sidebarList{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebarListItem{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebarListIcon{
+    margin-right: 15px;
+}
+
+/* Styling button and horizontal line */
+.sidebarButton{
+    width: 150px;
+    border: none;
+    padding: 10px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.sidebarHr{
+    margin: 20px 0;
+}
+
+/* Styling sidebarFriendList */
+.sidebarFriendList{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
