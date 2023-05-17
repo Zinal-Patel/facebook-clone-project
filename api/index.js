@@ -14,6 +14,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const app = new Express();
+const PORT =  process.env.PORT || 8008;
 
 // reads the .env file
 Dotenv.config();
@@ -26,17 +27,32 @@ Dotenv.config();
 Mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Mongoose Connected")}).catch((err)=>{console.log("Error:" + err.response)})
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-    // console.log(__filename)
-    console.log(__dirname)
-    app.use("/images", Express.static(path.join(__dirname, "/public/images")));
+
 // middleware
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}))
 app.use(Helmet());
 app.use(Morgan("common"));
+
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+});
+// const corsOptions = {
+//   origin: 'https://facebookclone-vv1k.onrender.com/', 
+//   // origin: 'https://facebook-clone-project.onrender.com/', 
+//   methods: ['GET', 'POST'], 
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// };
 app.use(cors());
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+// console.log(__filename)
+// console.log(__dirname)
+app.use("/images", Express.static(path.join(__dirname, "/public/images")));
+
 
 const storage = multer.diskStorage({
                                     destination:(req, file, cb)=>{
@@ -72,26 +88,24 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
 
 //When we got to "/api/users" address, "userRoutes" will run
-app.use("/api/users", userRoute)
-app.use("/api/auth", authRoute)
-app.use("/api/posts", postRoute)
+
+// app.use("/api/users", userRoute)
+app.use("/users", userRoute)
+app.use("/auth", authRoute)
+app.use("/posts", postRoute)
 
 
-app.use((req, res, next) => {
-    res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
-    next();
-  });
+
 //When the request path is "/images" we want "public/images" directory to open
 
 
 
 
-
-app.listen(8008, ()=> {
-    console.log("backend server is running")
+app.listen(PORT, ()=> {
+    console.log("backend server is running. Server started on PORT " + PORT)
 });
 
-//GET request
+// GET request
 // app.get("/", (req, res) => {
 //     res.send("welcome to homepage")
 // })
