@@ -52,7 +52,7 @@ export default function Post({post}) {
         const fetchUsers = async () => {
     
             //"post" is each post that we fecthed in Feed.js
-              const res = await Axios.get(`/users?userId=${post.userId}`);
+              const res = await Axios.get(`https://facebookclone-vv1k.onrender.com/users?userId=${post.userId}`);
               setFetchedUsers(res.data);
         }
         
