@@ -61,7 +61,9 @@ export default function Share() {
                 //refreshes the page
                 window.location.reload();
             }
-            catch(err){console.log(err)}
+            catch(err){
+                console.log("first")
+                console.log(err)}
         }
 
         // a post request to create a post and send "desc" in the req body 
