@@ -35,7 +35,7 @@ export default function Register() {
                                   })
 
             try{
-                 await Axios.post( baseURL + "auth/register", registeredUserInfo )
+                 await Axios.post( baseURL + "/auth/register", registeredUserInfo )
                  
                  //if everything is good, we redirect/navigate to "/login"
                  navigate("/login");

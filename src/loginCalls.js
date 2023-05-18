@@ -2,15 +2,18 @@ import Axios from "axios";
 
 export const loginCalls = async (userCredentials, dispatch) => {
 
+     const baseURL = process.env.REACT_APP_API_URL;
+
     //dispatch triggers the state updates so initially the state will be "LOGIN_START".
     dispatch({type: "LOGIN_START"});
 
     try{
     
      console.log(userCredentials)
+     console.log(baseURL)
 
             //when the path is "auth/login", and we have userCredential and if we get success, dispatch triggers the state updates so the state will be "LOGIN_SUCCESS". We store the response which is the user info in "payload"
-            const res = await Axios.post("/login", userCredentials);
+            const res = await Axios.post( baseURL + "/auth/login", userCredentials);
           
             dispatch({type: "LOGIN_SUCCESS", 
             user: res.data});
