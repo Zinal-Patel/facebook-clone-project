@@ -55,7 +55,7 @@ export default function Share() {
             createdPost.img = file.name;
         
             try{
-                console.log("try");
+                console.log(file.name);
 
                 await Axios.post(baseURL + "/upload", data);
                 //refreshes the page
