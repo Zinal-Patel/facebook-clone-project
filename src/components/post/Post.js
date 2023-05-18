@@ -16,6 +16,7 @@ export default function Post({post}) {
     const [fetchedUsers, setFetchedUsers] = useState({});
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const baseURL = process.env.API_URL;
 
 
     //means we will refer imported "user" as "currentUser"
@@ -52,7 +53,7 @@ export default function Post({post}) {
         const fetchUsers = async () => {
     
             //"post" is each post that we fecthed in Feed.js
-              const res = await Axios.get(`https://facebookclone-vv1k.onrender.com/users?userId=${post.userId}`);
+              const res = await Axios.get(`${baseURL}/users?userId=${post.userId}`);
               setFetchedUsers(res.data);
         }
         
