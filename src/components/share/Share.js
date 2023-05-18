@@ -66,7 +66,7 @@ export default function Share() {
 
         // a post request to create a post and send "desc" in the req body 
         try{
-            await Axios.post( baseURL + "/posts", createdPost)
+            await Axios.post( "/" + baseURL + "/posts", createdPost)
         }
         catch(err){
             console.log(err)
