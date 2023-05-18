@@ -58,6 +58,7 @@ export default function Share() {
                 console.log(file.name);
 
                 await Axios.post(baseURL + "/upload", data);
+                console.log("success");
                 //refreshes the page
                 window.location.reload();
             }
