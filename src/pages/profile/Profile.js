@@ -24,7 +24,7 @@ export default function Profile() {
     const fetchUsers = async () => {
 
         //"post" is each post that we fecthed in Feed.js
-          const res = await Axios.get(`/${baseURL}/users?userName=${paramsUsername}`);
+          const res = await Axios.get(baseURL + "/users?userName=" + paramsUsername);
           setFetchedUsers(res.data);
     }
     
