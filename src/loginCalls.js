@@ -10,7 +10,7 @@ export const loginCalls = async (userCredentials, dispatch) => {
      console.log(userCredentials)
 
             //when the path is "auth/login", and we have userCredential and if we get success, dispatch triggers the state updates so the state will be "LOGIN_SUCCESS". We store the response which is the user info in "payload"
-            const res = await Axios.post("auth/login", userCredentials);
+            const res = await Axios.post("/auth/login", userCredentials);
           
             dispatch({type: "LOGIN_SUCCESS", 
             user: res.data});

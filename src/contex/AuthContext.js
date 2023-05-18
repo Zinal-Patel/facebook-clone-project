@@ -7,6 +7,19 @@ import AuthReducer from "./AuthReducer";
 // "INITIAL_STATE" object is declared here, which represents the initial state of the authentication context.
 const INITIAL_STATE = {
                         user: null,
+                        // user: { 
+                        //         _id: "6454147edb4cc18b5c5a51f1",
+                        //         userName: "john",
+                        //         email:
+                        //         "john@gmail.com",
+                        //         // password:
+                        //         // "$2b$10$FtZHLhtVZOnDG2YUBrf6Ueu/tieRZnmI8erzxVU6dV9VqLxJNjZge",
+                        //         profilePicture: "person/1.jpeg",
+                        //         coverPicture: "",
+                        //         followers: [],
+                        //         following: [],
+                        //         isAdmin: false
+                        //       },
 
                         isFetching: false,
                         error: false
