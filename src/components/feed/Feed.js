@@ -15,7 +15,7 @@ export default function Feed({userName}) {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  const baseURL = process.env.API_URL;
+  const baseURL = process.env.REACT_APP_API_URL;
 
 
   //It we skip writing "[]"", everytime our app renders/updates, this function will be called.
