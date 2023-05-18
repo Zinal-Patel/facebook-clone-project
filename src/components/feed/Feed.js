@@ -13,6 +13,8 @@ export default function Feed({userName}) {
   const [fetchedPosts, setFetchedPosts] = useState([]);
   const { user } = useContext(AuthContext);
 
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   const baseURL = process.env.API_URL;
 
 
@@ -24,6 +26,8 @@ export default function Feed({userName}) {
     //we will fetch posts for timeline from our api and map through them later
     const fetchFeed = async () => {
 
+      console.log(baseURL)
+      console.log(PF)
           //we want to fetch 2 different types of data in 2 different situations. We want to fetch all posts if we do not have "userName" props available. If we have it available then we want to fetch only the current user's posts.
           const res = userName
           ? await Axios.get("/posts/profile/" + userName)
