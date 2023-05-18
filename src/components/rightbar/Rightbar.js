@@ -51,7 +51,7 @@ export default function Rightbar({user}) {
         }
        }
     fetchingFriends();
-  }, [user])
+  }, [user?._id])
 
   const followHandler = async () => {
 
