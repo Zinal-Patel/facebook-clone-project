@@ -30,7 +30,7 @@ export default function Feed({userName}) {
       console.log(PF)
           //we want to fetch 2 different types of data in 2 different situations. We want to fetch all posts if we do not have "userName" props available. If we have it available then we want to fetch only the current user's posts.
           const res = userName
-          ? await Axios.get("/posts/profile/" + userName)
+          ? await Axios.get( baseURL + "/posts/profile/" + userName)
           : await Axios.get( baseURL + "/posts/timeline/" + user._id);
 
           //displaying the most recent post at the top
