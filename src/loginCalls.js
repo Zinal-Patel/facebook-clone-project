@@ -12,7 +12,7 @@ export const loginCalls = async (userCredentials, dispatch) => {
             const res = await Axios.post("auth/login", userCredentials);
           
             dispatch({type: "LOGIN_SUCCESS", 
-            user: res.data});
+            user: "ko"});
         
 
        }
