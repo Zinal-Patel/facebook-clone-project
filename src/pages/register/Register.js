@@ -6,6 +6,8 @@ import Axios from "axios";
 
 export default function Register() {
 
+    const baseURL = process.env.REACT_APP_API_URL;
+
     const refUserName = useRef();
     const refEmail = useRef();
     const refPassword = useRef();
@@ -33,7 +35,7 @@ export default function Register() {
                                   })
 
             try{
-                 await Axios.post("auth/register", registeredUserInfo )
+                 await Axios.post( baseURL + "auth/register", registeredUserInfo )
                  
                  //if everything is good, we redirect/navigate to "/login"
                  navigate("/login");

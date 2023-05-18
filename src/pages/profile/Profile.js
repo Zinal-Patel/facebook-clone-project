@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 export default function Profile() {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const baseURL = process.env.REACT_APP_API_URL;
+
   const [fetchedUsers, setFetchedUsers] = useState([]);
 
   //using "useParams", we can access the parameters that we pass in the URL
@@ -22,7 +24,7 @@ export default function Profile() {
     const fetchUsers = async () => {
 
         //"post" is each post that we fecthed in Feed.js
-          const res = await Axios.get(`/users?userName=${paramsUsername}`);
+          const res = await Axios.get(`${baseURL}/users?userName=${paramsUsername}`);
           setFetchedUsers(res.data);
     }
     

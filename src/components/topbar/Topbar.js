@@ -7,6 +7,7 @@ import { useContext } from "react";
 export default function Topbar(){
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    
 
     //destructuring "user" property from the AuthContext object we imported
     //"user" is the user info we receive if log in was successful.

@@ -7,6 +7,8 @@ import Axios from "axios";
 export default function Share() {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const baseURL = process.env.REACT_APP_API_URL;
+
 
     const [file, setFile] = useState(null);
     const refDesc = useRef();
@@ -55,7 +57,7 @@ export default function Share() {
             try{
                 console.log("try");
 
-                await Axios.post("/upload", data);
+                await Axios.post(baseURL + "/upload", data);
                 //refreshes the page
                 window.location.reload();
             }
@@ -64,7 +66,7 @@ export default function Share() {
 
         // a post request to create a post and send "desc" in the req body 
         try{
-            await Axios.post("/posts", createdPost)
+            await Axios.post( baseURL + "/posts", createdPost)
         }
         catch(err){
             console.log(err)
