@@ -13,6 +13,8 @@ export default function Feed({userName}) {
   const [fetchedPosts, setFetchedPosts] = useState([]);
   const { user } = useContext(AuthContext);
 
+  const baseURL = process.env.API_URL;
+
 
   //It we skip writing "[]"", everytime our app renders/updates, this function will be called.
   //If we write "text" inside brackets eg. [text], this function runs everytime the "text" changes
@@ -25,7 +27,7 @@ export default function Feed({userName}) {
           //we want to fetch 2 different types of data in 2 different situations. We want to fetch all posts if we do not have "userName" props available. If we have it available then we want to fetch only the current user's posts.
           const res = userName
           ? await Axios.get("/posts/profile/" + userName)
-          : await Axios.get("/posts/timeline/" + user._id);
+          : await Axios.get( baseURL + "/posts/timeline/" + user._id);
 
           //displaying the most recent post at the top
           const sortedPosts = res.data.sort((post1, post2) => {
