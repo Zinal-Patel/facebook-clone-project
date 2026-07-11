@@ -76,3 +76,16 @@
     cursor: pointer;
     border-bottom: 1px dashed gray;
 }
+
+.postDeleteMenu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.postDeleteMenu:hover {
+    background: #f0f2f5;
+}

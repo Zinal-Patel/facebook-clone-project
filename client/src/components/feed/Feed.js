@@ -44,7 +44,9 @@ const [refresh, setRefresh] = useState(0);
   }, [userName, user._id, refresh])
 
 
-
+const deletePostHandler = (postId) => {
+    setFetchedPosts(fetchedPosts.filter((p) => p._id !== postId));
+};
 
   return (
     <div className="feedContainer">
@@ -62,7 +64,8 @@ const [refresh, setRefresh] = useState(0);
         {/* We will map through the posts that we fetched from our API*/}
         {
           fetchedPosts.map((item) =>{
-                  return <Post key={item._id} post={item}/>
+                  // return <Post key={item._id} post={item}/>
+                  return <Post key={item._id} post={item} onDelete={deletePostHandler} />
                 })
         }
         

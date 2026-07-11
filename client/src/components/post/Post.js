@@ -9,7 +9,7 @@ import {format} from "timeago.js";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contex/AuthContext"
 
-export default function Post({post}) {
+export default function Post({post, onDelete}) {
 
     const [like, setLike] = useState(post.likes.length);
     const [isLiked, setIsLiked] = useState(false);
@@ -21,8 +21,7 @@ export default function Post({post}) {
 
     //means we will refer imported "user" as "currentUser"
     const { user: currentUser } = useContext(AuthContext);
-
-
+    const [showMenu, setShowMenu] = useState(false);
     useEffect(()=>{
         //if the "likes" array of the current post inlcudes the current user id, means the post was already liked by the user
         if(post.likes.includes(currentUser._id)){
@@ -45,7 +44,19 @@ export default function Post({post}) {
         setIsLiked(!isLiked?true:false);
     }
 
-  
+    const deleteHandler = async () => {
+        try{
+                    
+            if(post.userId === currentUser._id)     { await Axios.delete(`${baseURL}/posts/${post._id}`, { data: { userId: currentUser._id } })
+                onDelete(post._id); 
+                }}
+            
+        catch(err){
+                    console.log(err)
+                }
+                
+    
+    }
 
     useEffect(() => {
 
@@ -81,8 +92,16 @@ export default function Post({post}) {
                     {/* we imported "format()" form timeago.js library that we install */}
                     <span className="postDate">{format(post.createdAt)}</span>
                 </div>
-                <div className="postTopRight">
+                {/* <div className="postTopRight">
                     <MoreVert/>
+                </div> */}
+                <div className="postTopRight">
+                    <MoreVert style={{cursor: "pointer"}} onClick={() => setShowMenu(!showMenu)} />
+                    {showMenu && post.userId === currentUser._id && (
+                        <div className="postDeleteMenu" onClick={deleteHandler}>
+                            Delete
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="postCenter">
