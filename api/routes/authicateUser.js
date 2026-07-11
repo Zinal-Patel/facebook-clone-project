@@ -55,14 +55,16 @@ router.post("/login", async (req, res) => {
             //If password is not valid, we return 400 status.
             !ispasswordValid && res.status(400).json("In valid password");
 
+           
         // If email and password are valid, we will respond the user.
-            res.status(200).json(checkUser)
+        res.status(200).json(checkUser)
            
     }
     catch(err){
         res.status(500).json(err);
     }
 })
+
 
 
 

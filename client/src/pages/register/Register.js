@@ -6,6 +6,8 @@ import Axios from "axios";
 
 export default function Register() {
 
+    const baseURL = process.env.REACT_APP_API_URL;
+
     const refUserName = useRef();
     const refEmail = useRef();
     const refPassword = useRef();
@@ -27,18 +29,28 @@ export default function Register() {
         //if they match, we will send a post request to post the data to our database
         else{
 
-            setRegisteredUserInfo({ userName: refUserName.current.value,
-                                    email: refEmail.current.value,
-                                    password: refPassword.current.value
-                                  })
-
+            const newUser = {
+                userName: refUserName.current.value,
+                email: refEmail.current.value,
+                password: refPassword.current.value
+    };
+            // setRegisteredUserInfo({ userName: refUserName.current.value,
+            //                         email: refEmail.current.value,
+            //                         password: refPassword.current.value
+            //                       })
             try{
-                 await Axios.post("auth/register", registeredUserInfo )
-                 
-                 //if everything is good, we redirect/navigate to "/login"
-                 navigate("/login");
+                    await Axios.post( baseURL + "/auth/register", newUser )
+                    navigate("/login");
                 }
+            // try{
+            //      await Axios.post( baseURL + "/auth/register", registeredUserInfo )
+                 
+            //      //if everything is good, we redirect/navigate to "/login"
+            //      navigate("/login");
+            //     }
 
+                
+        
             catch(err){
                  console.log(err);
                 }    

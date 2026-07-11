@@ -2,6 +2,8 @@ import { Bookmark, Chat, Event, Group, HelpOutline, PlayCircleFilledOutlined, Rs
 import { Users } from "../dummyData";
 import CloseFriends from '../closeFriends/CloseFriends';
 import './Sidebar.css';
+import { Link } from "react-router-dom";
+
 
 export default function Sidebar() {
   return (
@@ -11,7 +13,9 @@ export default function Sidebar() {
           <ul className="sidebarList">
             <li className="sidebarListItem">
                <RssFeed className="sidebarListIcon"/>
-               <span className="sidebarListItemText">Feed</span>
+                <Link to="/" style={{textDecoration: "none", color: "inherit"}}>
+                     <span className="sidebarListItemText">Feed</span>              
+                </Link>               
             </li>
             <li className="sidebarListItem">
                <Chat className="sidebarListIcon"/>

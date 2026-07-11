@@ -4,9 +4,11 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../contex/AuthContext";
 import Axios from "axios";
 
-export default function Share() {
+export default function Share({setRefresh}) {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const baseURL = process.env.REACT_APP_API_URL;
+
 
     const [file, setFile] = useState(null);
     const refDesc = useRef();
@@ -53,22 +55,28 @@ export default function Share() {
             createdPost.img = file.name;
         
             try{
-                console.log("try");
+                console.log(file.name);
 
-                await Axios.post("/upload", data);
+                await Axios.post(baseURL + "/upload", data);
+                console.log("success");
                 //refreshes the page
-                window.location.reload();
+                // window.location.reload();
             }
-            catch(err){console.log(err)}
+            catch(err){
+                console.log("first")
+                console.log(err)}
         }
 
         // a post request to create a post and send "desc" in the req body 
         try{
-            await Axios.post("/posts", createdPost)
+            await Axios.post( baseURL + "/posts", createdPost)
         }
         catch(err){
             console.log(err)
         }
+        setFile(null);              // clears the image preview
+        refDesc.current.value = ""; // clears the text box
+        setRefresh(prev => prev + 1);
     }
 
   return (

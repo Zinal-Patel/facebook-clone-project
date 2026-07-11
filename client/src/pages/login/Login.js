@@ -2,12 +2,15 @@ import {useContext, useRef} from "react";
 import "./Login.css";
 import { loginCalls } from "../../loginCalls";
 import { AuthContext } from "../../contex/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Login() {
 
     // "useRef()" hooks is used to store a mutable value that does not cause a re-render when updated. We can use useState to but it re-renders.
     const refEmail = useRef();
     const refPassword = useRef();
+    const navigate = useNavigate();
     //We are destructuring the properties of the AuthContext component that we imported.
     //"user" is the user info we receive if log in was successful.
     const {user, isFetching, error, dispatch} = useContext(AuthContext);
@@ -47,7 +50,9 @@ export default function Login() {
                         required />
                         <button className="loginButton" disabled={isFetching}>{ isFetching ? "Logging In..."  : "Log In"}</button>
                         <span className="loginForgot">Forgot Password?</span>
-                        <button className="loginRegister">Create New Account</button>
+                        
+                        <button className="loginRegister" onClick={()=>navigate('/register')}>Create New Account</button>
+                        
                     </form>
                 </div>
             </div>

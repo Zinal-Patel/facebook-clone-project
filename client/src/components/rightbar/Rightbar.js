@@ -12,8 +12,11 @@ export default function Rightbar({user}) {
   //The props "user" is the user whose profile is open.
   //The "currentUser" is whose account we are logged in.
   const PF= process.env.REACT_APP_PUBLIC_FOLDER;
+  const baseURL = process.env.REACT_APP_API_URL;
+
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
+  
   // console.log(currentUser)
   // console.log(user)
   // console.log(currentUser.following.includes(user?._id))
@@ -39,7 +42,7 @@ export default function Rightbar({user}) {
 
     const fetchingFriends = async () => {
         try{
-            const friendList = await Axios.get("/users/friends/" + user?._id);
+            const friendList = await Axios.get( baseURL + "/users/friends/" + user?._id);
             
             setFriends(friendList.data);
         }
@@ -47,14 +50,17 @@ export default function Rightbar({user}) {
            console.log(err);
         }
        }
-    fetchingFriends();
-  }, [user])
+    // fetchingFriends();
+      if (user?._id) {          // only fetch on profile pages, where user exists
+        fetchingFriends();
+    }
+  }, [user?._id])
 
   const followHandler = async () => {
 
     try {
           if(isFollowed){
-                await Axios.put("/users/"+ user._id + "/unfollow", { userId: currentUser._id });
+                await Axios.put(  baseURL + "/users/"+ user._id + "/unfollow", { userId: currentUser._id });
 
                 dispatch({type: "UNFOLLOW", userId: user._id});
 
@@ -69,7 +75,7 @@ export default function Rightbar({user}) {
                 // ***************************************************
             }
           else {
-               await Axios.put("/users/"+ user._id + "/follow", { userId: currentUser._id });
+               await Axios.put( baseURL + "/users/"+ user._id + "/follow", { userId: currentUser._id });
 
                dispatch({type: "FOLLOW", userId: user._id});
 

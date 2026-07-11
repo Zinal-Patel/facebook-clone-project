@@ -16,6 +16,7 @@ export default function Post({post}) {
     const [fetchedUsers, setFetchedUsers] = useState({});
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const baseURL = process.env.REACT_APP_API_URL;
 
 
     //means we will refer imported "user" as "currentUser"
@@ -34,8 +35,8 @@ export default function Post({post}) {
 
         try{
             //our "like a post" path requires post id in the url and user id in the body.
-            Axios.put(`/posts/${post._id}/like`, { userId: currentUser._id})
-
+            // Axios.put(`/posts/${post._id}/like`, { userId: currentUser._id})
+            Axios.put(`${baseURL}/posts/${post._id}/like`, { userId: currentUser._id})
         }
         catch(err){
 
@@ -52,7 +53,7 @@ export default function Post({post}) {
         const fetchUsers = async () => {
     
             //"post" is each post that we fecthed in Feed.js
-              const res = await Axios.get(`/users?userId=${post.userId}`);
+              const res = await Axios.get(`${baseURL}/users?userId=${post.userId}`);
               setFetchedUsers(res.data);
         }
         

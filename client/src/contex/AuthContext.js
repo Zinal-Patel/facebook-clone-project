@@ -1,24 +1,25 @@
 //we are creating authentication context using React's createContext and useReducer hooks.
 //we imported the necessary dependencies: "createContext" and "useReducer" from "react".
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import AuthReducer from "./AuthReducer";
 
 
 // "INITIAL_STATE" object is declared here, which represents the initial state of the authentication context.
 const INITIAL_STATE = {
-                        user: { 
-                                _id: "6454147edb4cc18b5c5a51f1",
-                                userName: "john",
-                                email:
-                                "john@gmail.com",
-                                // password:
-                                // "$2b$10$FtZHLhtVZOnDG2YUBrf6Ueu/tieRZnmI8erzxVU6dV9VqLxJNjZge",
-                                profilePicture: "person/1.jpeg",
-                                coverPicture: "",
-                                followers: [],
-                                following: [],
-                                isAdmin: false
-                              },
+                        user: JSON.parse(localStorage.getItem("user")) || null,
+                        // user: { 
+                        //         _id: "6454147edb4cc18b5c5a51f1",
+                        //         userName: "john",
+                        //         email:
+                        //         "john@gmail.com",
+                        //         // password:
+                        //         // "$2b$10$FtZHLhtVZOnDG2YUBrf6Ueu/tieRZnmI8erzxVU6dV9VqLxJNjZge",
+                        //         profilePicture: "person/1.jpeg",
+                        //         coverPicture: "",
+                        //         followers: [],
+                        //         following: [],
+                        //         isAdmin: false
+                        //       },
 
                         isFetching: false,
                         error: false
@@ -42,6 +43,9 @@ export const AuthContextProvider = ({ children }) => {
     // The "dispatch" function triggers the process of state update by passing the action object to the reducer and the updates state is stored in "state".
     const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
+      useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(state.user));
+    }, [state.user]);
     //The updated "state" we recieved above, we pass its properties as a value in the "AuthContext.Provider" components
     return (
             <AuthContext.Provider value={{user: state.user, 

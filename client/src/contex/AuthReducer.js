@@ -26,6 +26,12 @@ const AuthReducer = (state, action) => {
                 isFetching: false,
                 error: action.error 
               };
+        case "LOGOUT":
+            return {
+                user: null,
+                isFetching: false,
+                error: false
+            };
         //When the action taken is follow, we want to keep all the properties of user same except the "following" property
         case "FOLLOW":
             return {
