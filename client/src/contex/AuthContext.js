@@ -25,16 +25,19 @@ const INITIAL_STATE = {
                         error: false
                       };
 
-
-//Using the "createContext" function allows us to share data or state between components without passing props explicitly through the component tree.
-//Here we created a context using "createContext" function and we passed our "INITIAL_STATE" object in it. 
-//WE assinged this to "AuthContext"
-//"AuthContext" will be used to provide the authentication state and actions to components within the React component tree.
+  //"context" is a concept allows us to share data or state between components without passing props explicitly through the component tree
+  //Using the "createContext", "useContext" functions is how we use/access/impliment that concept
+  //Here we created a context using "createContext" function and we passed our "INITIAL_STATE" object in it. where initial state contains the data of the user, isFetching, error
+  //if there is a user it will show the user's feed, if no user it shows login page
+  //WE assinged this to "AuthContext"
+  //so AuthContext now stores the user info if there is any or none, isFetching, error
+  //"AuthContext" will be used to provide the authentication state and actions to components within the React component tree.
 export const AuthContext = createContext(INITIAL_STATE);
 
 
 //We are declaring a new component "AuthContextProvider". It recieves "children" props.
-//Later we will wrap "children" component inside "AuthContextProvider" component.
+//components cant access AuthContext by defualt. Componets need to be wrapped around by the "provider" for them to be able to access AuthContext
+//Later we will wrap "children" which will be our component that we want to give access to AuthContext, inside "AuthContextProvider" component.
 export const AuthContextProvider = ({ children }) => {
 
     //We imported "AuthReducer" which updates and returns our "INITIAL_STATE" according to the actions that occur. (check AuthReducer for more).

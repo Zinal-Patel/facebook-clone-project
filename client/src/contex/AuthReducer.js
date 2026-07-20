@@ -6,6 +6,7 @@ const AuthReducer = (state, action) => {
     //If the type is "LOGIN_START", we obviuosly don't have the user so its null, we are still fetching data from database and therefore no error as of yet.
     //If the type is "LOGIN_SUCCESS", we obviuosly have received the user from database so its ---, we have finished fetching and therefore no error.
     //If the type is "LOGIN_FAILURE", we obviuosly don't have the user so its null, we have finished fetching and we obviously have the error .
+    
     switch(action.type){
 
         case "LOGIN_START":

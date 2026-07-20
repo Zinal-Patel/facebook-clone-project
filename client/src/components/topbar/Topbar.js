@@ -6,18 +6,24 @@ import { useContext } from "react";
 
 export default function Topbar(){
 
+    
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    //the "npm start", makes the build tool read .env by default. And then the buil tool scans for "process.env.REACT_APP_ANYTHING" and replaces their values even before the app is ran.
     const navigate = useNavigate();
 
 
+    //AuthContext store user info if any, isFetching, and error
+    //using "useContext" we are reading Authcontext
     //destructuring "user" property from the AuthContext object we imported
-    //"user" is the user info we receive if log in was successful.
+    //"user" is the user info we receive if log in was successful, if wasn't then its null or empty.
     const {user, dispatch} = useContext(AuthContext)
+
     const handleLogout = () => {
-    localStorage.removeItem("user");   // clear persistent storage
-    dispatch({ type: "LOGOUT" });      // reset context to no-user
-    navigate("/login");
-};
+            localStorage.removeItem("user");   // clear persistent storage
+            dispatch({ type: "LOGOUT" });      // reset context to no-user
+            navigate("/login");
+           };
+
     return (
         <>
             <div className="topbarConatiner">
